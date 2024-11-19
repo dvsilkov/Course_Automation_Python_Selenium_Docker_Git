@@ -1,0 +1,2 @@
+# Course_Automation_Python_Selenium_Docker_Git
+Данный проект иллюстрирует процесс построения фреймворка Pytest+Selenium
