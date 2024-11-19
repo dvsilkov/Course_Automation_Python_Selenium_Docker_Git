@@ -1,0 +1,7 @@
+# Ignore PyCharm configuration files
+\#Materials/
+.venv/
+.idea/
+*.iml
+*.ipr
+*.iws
