@@ -19,4 +19,8 @@ class LoginPage(BasePage):
     def click_login_button(self):
         self.element_is_clickable(self.locators.LOGIN_BUTTON).click()
 
+    @allure.step("Get error message if Username or Password are incorrect")
+    def get_error_message_wrong_credentials(self):
+        return self.get_text_from_element(self.locators.ERROR_MESSAGE).text
+
 

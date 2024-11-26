@@ -9,6 +9,7 @@ class LoginPageLocators:
     USERNAME_FIELD = ("xpath", "//input[@name='username']")
     PASSWORD_FIELD = ("xpath", "//input[@name='password']")
     LOGIN_BUTTON = ("xpath", "//button[@type='submit']")
+    ERROR_MESSAGE = ("xpath", "//div/p[@class='oxd-text oxd-text--p oxd-alert-content-text']")
 
 
 class DashboardPageLocators:

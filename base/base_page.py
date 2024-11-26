@@ -71,3 +71,9 @@ class BasePage:
         """
         # возвращает элемент
         return self.wait.until(EC.invisibility_of_element_located(locator), message=f"Can't find element by locator {locator}")
+
+    def get_text_from_element(self, locator):
+        """
+        Метод находит элемент по локатору и возвращает текстовое значение из него.
+        """
+        return self.element_is_visible(locator)
