@@ -3,7 +3,7 @@
 pytest -v --alluredir=allure_results .\tests
 
 Команда для запуска тестов из класса с основным набором параметров:
->pytest -sv --alluredir=allure_results .\tests\login_page_test.py::TestLoginPage
+>pytest -sv --alluredir=allure_results .\tests\dashboard_page_test.py::TestDashboardPage
 
 
 Команда для запуска отчета Allure:
@@ -19,17 +19,17 @@ import pytest
 from base.base_test import BaseTest
 
 
-@allure.feature("Login Page Functionality")
-class TestLoginPage(BaseTest):
+@allure.feature("Dashboard Page Functionality")
+class TestDashboardPage(BaseTest):
 
-    @allure.title("Input wrong credentials")
-    @allure.severity("High")
+    @allure.title("The checking that main left menu has correct item names")
+    @allure.severity("Medium")
     @pytest.mark.smoke
-    def test_error_message_if_wrong_credentials(self):
+    def test_item_names_from_main_menu(self):
         self.login_page.open()
-        self.login_page.enter_login(f"{self.data.LOGIN}{random.randint(1, 100)}")
-        self.login_page.enter_password(f"{self.data.PASSWORD}{random.randint(1,100)}")
+        self.login_page.enter_login(self.data.LOGIN)
+        self.login_page.enter_password(self.data.PASSWORD)
         self.login_page.click_login_button()
-        self.login_page.check_error_message_wrong_credentials()
+        self.dashboard_page.check_items_list()
         self.personal_page.make_screenshot("Success")
 

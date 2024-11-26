@@ -63,6 +63,15 @@ class BasePage:
         # возвращает элемент
         return self.wait.until(EC.visibility_of_element_located(locator), message=f"Can't find element by locator {locator}")
 
+    def elements_are_visible(self, locator):
+        """
+        Метод находит и возвращает несколько веб-элементов, когда они станут видны на странице. Поиск всех элементов
+        идет по общему локатору. В методе реализован механизм явного ожидания. То есть поиск элементов продолжается
+        в пределах заданного таймаута, по истечении которого вызывается исключение 'TimeoutException'.
+        """
+        # возвращает список элементов
+        return self.wait.until(EC.visibility_of_all_elements_located(locator), message=f"Can't find elements by locator {locator}")
+
     def element_is_not_visible(self, locator):
         """
         Метод находит и возвращает веб-элемент, когда он исчезнет на странице. Поиск элемента идет по локатору.
@@ -76,4 +85,11 @@ class BasePage:
         """
         Метод находит элемент по локатору и возвращает текстовое значение из него.
         """
-        return self.element_is_visible(locator)
+        return self.element_is_visible(locator).text
+
+    def get_text_from_elements(self, elements_locator):
+        """
+        Метод находит список элементов по локатору и возвращает текстовое значение из них также в виде списка.
+        """
+        item_list = self.elements_are_visible(elements_locator)
+        return [item.text for item in item_list]

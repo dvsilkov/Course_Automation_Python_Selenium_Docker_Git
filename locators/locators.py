@@ -15,6 +15,7 @@ class LoginPageLocators:
 class DashboardPageLocators:
     """ Класс с локаторами для страницы 'Dashboard page ' """
     MY_INFO_BUTTON = ("xpath", "//a[@href='/web/index.php/pim/viewMyDetails']")
+    LEFT_MENU_LIST_ITEMS = ("xpath", "//span[@class='oxd-text oxd-text--span oxd-main-menu-item--name']")
 
 
 class PersonalPageLocators:
