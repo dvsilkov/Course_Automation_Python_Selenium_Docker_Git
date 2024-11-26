@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   automation-selenium-tests:
     image: pytest_selenium_runner
@@ -13,3 +11,7 @@ services:
       - IS_START_DOCKER=true
       - LOGIN=${LOGIN}
       - PASSWORD=${PASSWORD}
+
+# Запуск тестов: docker-compose up (можно добавить ключ -d, значит в фоне)
+
+# Формирование отчета: docker-compose run automation-selenium-tests /bin/bash -c "allure generate allure_results --clean -o allure_report"

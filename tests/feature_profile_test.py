@@ -4,6 +4,9 @@ pytest -v --alluredir=\allure_results .\tests
 
 Команда для запуска отчета Allure:
 allure serve .\allure_results
+
+Команда для генерации файла отчета Allure:
+allure generate allure_results --clean -o allure_report
 """
 import random
 import time

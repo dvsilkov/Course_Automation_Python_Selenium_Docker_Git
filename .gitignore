@@ -1,6 +1,7 @@
 # Ignore PyCharm configuration files
 \#Materials/
 allure_results/
+allure_report/
 .pytest_cache/
 .venv/
 .idea/
