@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  automation-selenium-tests:
+    image: pytest_selenium_runner
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/Automation_project/
+    command: pytest -sv --alluredir=allure_results/ /Automation_project/tests
+    environment:
+      - IS_START_DOCKER=true
+      - LOGIN=${LOGIN}
+      - PASSWORD=${PASSWORD}
