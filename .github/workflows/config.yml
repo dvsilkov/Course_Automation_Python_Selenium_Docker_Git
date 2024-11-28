@@ -20,7 +20,7 @@ jobs:
 
       - name: Generate Allure report
         run: |
-          docker compose run automation-selenium-tests /bin/sh -c "allure generate allure_results --clean -o allure_report"
+          docker compose run automation-selenium-tests /bin/bash -c "allure generate allure_results --clean -o allure_report"
 
       - name: Deploy to Github Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
