@@ -40,7 +40,7 @@ class BasePage:
         по истечении которого вызывается исключение 'TimeoutException'.
         """
         # возвращает элемент
-        with allure.step(f"Web-element '{locator}' has been found"):
+        with allure.step(f"Web-element '{locator}' has been found and it is clickable"):
             return self.wait.until(EC.element_to_be_clickable(locator), message=f"Can't find element by locator {locator}")
 
     def text_is_present_in_element(self, locator, exp_text):
@@ -61,7 +61,8 @@ class BasePage:
         по истечении которого вызывается исключение 'TimeoutException'.
         """
         # возвращает элемент
-        return self.wait.until(EC.visibility_of_element_located(locator), message=f"Can't find element by locator {locator}")
+        with allure.step(f"Web-element '{locator}' has been found and it is visible"):
+            return self.wait.until(EC.visibility_of_element_located(locator), message=f"Can't find element by locator {locator}")
 
     def elements_are_visible(self, locator):
         """
@@ -70,7 +71,8 @@ class BasePage:
         в пределах заданного таймаута, по истечении которого вызывается исключение 'TimeoutException'.
         """
         # возвращает список элементов
-        return self.wait.until(EC.visibility_of_all_elements_located(locator), message=f"Can't find elements by locator {locator}")
+        with allure.step(f"Web-elements by '{locator}' have been found and it are clickable"):
+            return self.wait.until(EC.visibility_of_all_elements_located(locator), message=f"Can't find elements by locator {locator}")
 
     def element_is_not_visible(self, locator):
         """
@@ -79,17 +81,20 @@ class BasePage:
         по истечении которого вызывается исключение 'TimeoutException'.
         """
         # возвращает элемент
-        return self.wait.until(EC.invisibility_of_element_located(locator), message=f"Can't find element by locator {locator}")
+        with allure.step(f"Web-element '{locator}' has been found and it is no longer clickable"):
+            return self.wait.until(EC.invisibility_of_element_located(locator), message=f"Can't find element by locator {locator}")
 
     def get_text_from_element(self, locator):
         """
         Метод находит элемент по локатору и возвращает текстовое значение из него.
         """
-        return self.element_is_visible(locator).text
+        with allure.step(f"The text from web-element '{locator}' has been gotten"):
+            return self.element_is_visible(locator).text
 
     def get_text_from_elements(self, elements_locator):
         """
         Метод находит список элементов по локатору и возвращает текстовое значение из них также в виде списка.
         """
-        item_list = self.elements_are_visible(elements_locator)
-        return [item.text for item in item_list]
+        with allure.step(f"The text from web-elements by '{elements_locator}' has been gotten"):
+            item_list = self.elements_are_visible(elements_locator)
+            return [item.text for item in item_list]

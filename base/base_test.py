@@ -22,4 +22,3 @@ class BaseTest:
         request.cls.login_page = LoginPage(driver_fixture, self.links.LOGIN_PAGE)
         request.cls.dashboard_page = DashboardPage(driver_fixture, self.links.DASHBOARD_PAGE)
         request.cls.personal_page = PersonalPage(driver_fixture, self.links.PERSONAL_PAGE)
-

@@ -19,6 +19,4 @@ class DashboardPage(BasePage):
             "Recruitment", "My Info", "Performance", "Dashboard",
             "Directory", "Maintenance", "Claim", "Buzz"
         ]
-        print(items_list, exp_items_list)
         assert items_list == exp_items_list, "The item names from left main are incorrect"
-
