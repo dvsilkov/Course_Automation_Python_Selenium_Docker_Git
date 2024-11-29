@@ -54,6 +54,17 @@ class BasePage:
         with allure.step(f"Web-element '{locator}' has been found and value '{exp_text}'appeared"):
             return self.wait.until(EC.text_to_be_present_in_element_value(locator, exp_text), message=f"Can't find element by locator {locator}")
 
+    def element_is_present(self, locator):
+        """
+        Метод находит и возвращает веб-элемент, если элемент с указанным локатором присутствует в DOM-дереве, но,
+        к примеру, не виден, так как вся страница не помещается на экране.
+        Поиск элемента идет по локатору. В методе реализован механизм явного ожидания. То есть поиск элемента
+        продолжается в пределах заданного таймаута, по истечении которого вызывается исключение 'TimeoutException'.
+        """
+        # возвращает элемент
+        with allure.step(f"Web-element '{locator}' has been found on the DOM of a page"):
+            return self.wait.until(EC.presence_of_element_located(locator), message=f"Can't find element by locator {locator}")
+
     def element_is_visible(self, locator):
         """
         Метод находит и возвращает веб-элемент, когда он станет виден на странице. Поиск элемента идет по локатору.

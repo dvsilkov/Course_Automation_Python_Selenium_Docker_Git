@@ -23,4 +23,11 @@ class PersonalPageLocators:
     FIRST_NAME_FIELD = ("xpath", "//input[@name='firstName']")
     SAVE_BUTTON = ("xpath", "//button[@type='submit']")
     POP_UP_SUCCESS = ("xpath", "//div[@id='oxd-toaster_1']")
+    PROFILE_IMAGE = ("xpath", "//img[@class='employee-image']")
 
+class ProfilePicturePageLocators:
+    """ Класс с локаторами для страницы 'Profile Picture page ' """
+    UPLOAD_BUTTON = ("xpath", "//input[@type='file']")  # элемент "input" с типом "file"
+    NEW_IMAGE = ("xpath", "//img[contains(@src, 'data:image')]")
+    SAVE_BUTTON = ("xpath", "//button[@type='submit']")
+    POP_UP_SUCCESS = ("xpath", "//div[@id='oxd-toaster_1']")

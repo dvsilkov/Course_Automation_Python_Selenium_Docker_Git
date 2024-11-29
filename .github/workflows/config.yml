@@ -1,7 +1,6 @@
-# Allure отчет сформировать не получится, так как в образ не установлен сам Allure
 name: UI Tests
 
-on: [push]
+#on: [push]
 
 jobs:
   ui-tests:
