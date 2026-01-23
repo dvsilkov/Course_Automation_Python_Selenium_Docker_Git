@@ -8,6 +8,9 @@ from pages.dashboard_page import DashboardPage
 
 
 class BaseTest:
+    """
+    Класс для подготовки тестового окружения для всех тестовых классов
+    """
     # аннотация типов
     data: Data
     links: Links
@@ -18,6 +21,10 @@ class BaseTest:
 
     @pytest.fixture(autouse=True)
     def base(self, request, driver_fixture):
+        """
+        В методе base происходит инициализация драйвера и создаются экземпляры классов всех страниц.
+        То есть это не нужно импортировать в тестовых классах, а к методам можно обращаться через self
+        """
         request.cls.driver = driver_fixture
         request.cls.data = Data()
         request.cls.links = Links()

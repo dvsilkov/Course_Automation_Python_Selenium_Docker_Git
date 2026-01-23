@@ -5,6 +5,9 @@ from locators.locators import LoginPageLocators
 
 
 class LoginPage(BasePage):
+    """
+    Класс содержит методы для взаимодествия с элементами страницы LoginPage
+    """
     locators = LoginPageLocators()  # создаем экземпляр класса с локаторами для страницы Login Page
 
     @allure.step("Enter login")
@@ -15,7 +18,7 @@ class LoginPage(BasePage):
     def enter_password(self, password):
         self.element_is_clickable(self.locators.PASSWORD_FIELD).send_keys(password)
 
-    @allure.step("Click 'Submit' button")
+    @allure.step("Click 'Login' button")
     def click_login_button(self):
         self.element_is_clickable(self.locators.LOGIN_BUTTON).click()
 

@@ -26,6 +26,9 @@ class TestDashboardPage(BaseTest):
     @allure.severity("Medium")
     @pytest.mark.smoke
     def test_item_names_from_main_menu(self):
+        """
+        Тест
+        """
         self.login_page.open()
         self.login_page.enter_login(self.data.LOGIN)
         self.login_page.enter_password(self.data.PASSWORD)

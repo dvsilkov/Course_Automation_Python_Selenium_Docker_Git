@@ -27,6 +27,9 @@ class TestProfileFeature(BaseTest):
     @allure.severity("Critical")
     @pytest.mark.smoke
     def test_change_profile_name(self):
+        """
+        Тест изменяет имя пользователя и проверяет изменения
+        """
         self.login_page.open()
         self.login_page.enter_login(self.data.LOGIN)
         self.login_page.enter_password(self.data.PASSWORD)
@@ -34,7 +37,8 @@ class TestProfileFeature(BaseTest):
         self.dashboard_page.page_is_opened()
         self.dashboard_page.click_my_info_link()
         self.personal_page.page_is_opened()
-        new_name = self.personal_page.change_name(f"_Test_{random.randint(1, 100)}")
+        new_name = self.personal_page.change_name(f"Test_name_{random.randint(1, 100)}")
         self.personal_page.save_changes()
-        self.personal_page.is_changes_saved(new_name)
+        self.personal_page.reload_page()
+        self.personal_page.is_name_changes_saved(new_name)
         self.personal_page.make_screenshot("Success")

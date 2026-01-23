@@ -26,6 +26,9 @@ class TestProfilePicture(BaseTest):
     @allure.severity("High")
     @pytest.mark.smoke
     def test_update_profile_picture(self):
+        """
+        Тест меняет картинку в профиле пользователя
+        """
         self.login_page.open()
         self.login_page.enter_login(self.data.LOGIN)
         self.login_page.enter_password(self.data.PASSWORD)

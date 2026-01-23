@@ -5,7 +5,10 @@ from locators.locators import DashboardPageLocators
 
 
 class DashboardPage(BasePage):
-    locators = DashboardPageLocators()  # создаем экземпляр класса с локаторами для страницы Dashboard Page
+    """
+    Класс содержит методы для взаимодействия с элементами страницы DashboardPage
+    """
+    locators = DashboardPageLocators()  # создаем экземпляр класса с локаторами для страницы DashboardPage
 
     @allure.step("Click on 'My Info' link")
     def click_my_info_link(self):
@@ -13,6 +16,9 @@ class DashboardPage(BasePage):
 
     @allure.step("Check items list in the left main menu")
     def check_items_list(self):
+        """
+        Метод проверяет список разделов в боковом меню
+        """
         items_list = self.get_text_from_elements(self.locators.LEFT_MENU_LIST_ITEMS)
         exp_items_list = [
             "Admin", "PIM", "Leave", "Time",

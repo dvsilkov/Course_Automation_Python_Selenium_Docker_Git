@@ -1,3 +1,5 @@
+import time
+
 import allure
 from allure_commons.types import AttachmentType
 from selenium.webdriver.support.ui import WebDriverWait
@@ -5,6 +7,9 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class BasePage:
+    """
+    В классе инициализируется драйвер и размещены общие методы для всех страниц
+    """
 
     def __init__(self, driver, page_url):
         """
@@ -13,17 +18,28 @@ class BasePage:
         """
         self.driver = driver
         self.page_url = page_url
-        self.wait = WebDriverWait(driver, timeout=10, poll_frequency=1)  # таймаут - 10 сек, частота поиска - 1 сек
+        self.wait = WebDriverWait(driver, timeout=20, poll_frequency=1)  # тайм-аут - 10 сек, частота опроса страницы - 1 сек
 
-    @allure.step(f"Open page")
     def open(self):
         """ Метод open. Он открывает нужную страницу в браузере, используя метод get() """
-        self.driver.get(self.page_url)
+        with allure.step(f"Open page with url '{self.page_url}'"):
+            self.driver.get(self.page_url)
 
-    @allure.step(f"Page is opened")
     def page_is_opened(self):
-        """ Метод is_opened вернет True, если текущий URL страницы станет равным self.PAGE_URL. """
-        self.wait.until(EC.url_to_be(self.page_url), message=f"Current URL is not equal '{self.page_url}'")  # ожидает, пока URL страницы не станет равным указанному URL
+        """
+        Метод is_opened проверяет, что страница открыта.
+        Вернет True, если текущий URL страницы станет равным self.page_url.
+        """
+        with allure.step(f"Page '{self.page_url}' is opened"):
+            self.wait.until(EC.url_to_be(self.page_url), message=f"Current URL is not equal '{self.page_url}'")  # ожидает, пока URL страницы не станет равным указанному URL
+
+    def reload_page(self):
+        """
+        Метод обновляет текущую страницу
+        """
+        with allure.step(f"Page '{self.page_url}' is reloaded"):
+            self.driver.refresh()
+            time.sleep(5)
 
     @allure.step(f"Screenshot has been created")
     def make_screenshot(self, screenshot_name):
@@ -32,6 +48,11 @@ class BasePage:
             name=screenshot_name,
             attachment_type=AttachmentType.PNG
         )
+
+    @allure.step('Scroll page to the desired element.')
+    def scroll_page(self):
+        """ Метод для скролла к искомому элементу с помощью java-скрипта """
+        self.driver.execute_script("window.scrollBy(0, 500);")
 
     def element_is_clickable(self, locator):
         """
@@ -45,7 +66,7 @@ class BasePage:
 
     def text_is_present_in_element(self, locator, exp_text):
         """
-        Метод находит и возвращает веб-элемент, если нужный текст появится в значении элемента.
+        Метод находит и возвращает веб-элемент, если нужный текст появится у элемента в атрибуте value.
         Поиск элемента идет по локатору.
         В методе реализован механизм явного ожидания. То есть поиск элемента продолжается в пределах заданного таймаута,
         по истечении которого вызывается исключение 'TimeoutException'.

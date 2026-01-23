@@ -1,3 +1,5 @@
+import os
+
 import allure
 from base.base_page import BasePage
 from locators.locators import ProfilePicturePageLocators
@@ -10,13 +12,14 @@ class ProfilePicturePage(BasePage):
     def upload_new_image(self):
         current_directory = os.getcwd()  # получаем текущий рабочий каталог
         path_to_image = rf"{current_directory}\Profile_Image.png"
-        print(path_to_image)
         upload_image = self.element_is_present(self.locators.UPLOAD_BUTTON)
         upload_image.send_keys(path_to_image)
 
     @allure.step("Picture has been uploaded successfully")
     def is_image_uploaded(self):
-        # суть проверки в том, что после загрузки изображения найден элемент с атрибутом src и нужным значением
+        """
+        После загрузки изображения, метод проверяет, что найден элемент с атрибутом src и нужным значением, прописано в локаторе
+        """
         self.element_is_visible(self.locators.NEW_IMAGE)
 
     @allure.step("Click button to save changes")
