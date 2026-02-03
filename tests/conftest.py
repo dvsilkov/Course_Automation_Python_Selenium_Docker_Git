@@ -22,6 +22,6 @@ def driver_fixture(request):
     if is_start_docker:
         options.add_argument("--headless")  # опция для запуска в CI или Docker, локально не используется
     driver = webdriver.Chrome(service=service, options=options)
-    request.cls.driver = driver  # присвоение созданного драйвера атрибуту тестового класса. Это позволяет использовать драйвер во всех тестовых методах внутри класса
+    request.cls.driver = driver  # Присвоение созданного драйвера атрибуту тестового класса. Это позволяет использовать драйвер во всех тестовых методах внутри класса
     yield driver
     driver.quit() # закрытие браузера

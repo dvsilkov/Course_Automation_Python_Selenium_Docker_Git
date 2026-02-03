@@ -1,28 +1,56 @@
 import allure
 
 from base.base_page import BasePage
-from locators.locators import DashboardPageLocators
-
 
 class DashboardPage(BasePage):
     """
-    Класс содержит методы для взаимодействия с элементами страницы DashboardPage
+    Класс содержит локаторы и методы для взаимодействия с элементами страницы DashboardPage
     """
-    locators = DashboardPageLocators()  # создаем экземпляр класса с локаторами для страницы DashboardPage
+    # локаторы для страницы DashboardPage
+    TIME_WIDGET = ("xpath", "//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget'][1]")
+    TIME_WIDGET_NAME = ("xpath", "//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget'][1]/div/div/div/p")
 
-    @allure.step("Click on 'My Info' link")
-    def click_my_info_link(self):
-        self.element_is_clickable(self.locators.MY_INFO_BUTTON).click()
+    ACTIONS_WIDGET = ("xpath", "//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget'][2]")
+    ACTIONS_WIDGET_NAME = ("xpath","//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget'][2]/div/div/div/p")
 
-    @allure.step("Check items list in the left main menu")
-    def check_items_list(self):
+    QUICK_LAUNCH_WIDGET = ("xpath", "//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget'][3]")
+    QUICK_LAUNCH_WIDGET_NAME = ("xpath","//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget'][3]/div/div/div/p")
+
+    POSTS_WIDGET = ("xpath", "//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget'][4]")
+    POSTS_WIDGET_NAME = ("xpath","//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget'][4]/div/div/div/p")
+
+    @allure.step("Checking the display time widget")
+    def check_visible_time_widget(self):
         """
-        Метод проверяет список разделов в боковом меню
+        Метод для проверки отображения виджета Time at Work
         """
-        items_list = self.get_text_from_elements(self.locators.LEFT_MENU_LIST_ITEMS)
-        exp_items_list = [
-            "Admin", "PIM", "Leave", "Time",
-            "Recruitment", "My Info", "Performance", "Dashboard",
-            "Directory", "Maintenance", "Claim", "Buzz"
-        ]
-        assert items_list == exp_items_list, "The item names from left main are incorrect"
+        self.element_is_visible(self.TIME_WIDGET)
+        widget_name = self.element_is_visible(self.TIME_WIDGET_NAME).text
+        assert widget_name == "Time at Work", f"The widget name '{widget_name}' is incorrect, should be 'Time at Work'"
+
+    @allure.step("Checking the display actions widget")
+    def check_visible_actions_widget(self):
+        """
+        Метод для проверки отображения виджета My Actions
+        """
+        self.element_is_visible(self.ACTIONS_WIDGET)
+        widget_name = self.element_is_visible(self.ACTIONS_WIDGET_NAME).text
+        assert widget_name == "My Actions", f"The widget name '{widget_name}' is incorrect, should be 'My Actions'"
+
+    @allure.step("Checking the display quick launch widget")
+    def check_visible_quick_launch_widget(self):
+        """
+        Метод для проверки отображения виджета Quick Launch
+        """
+        self.element_is_visible(self.QUICK_LAUNCH_WIDGET)
+        widget_name = self.element_is_visible(self.QUICK_LAUNCH_WIDGET_NAME).text
+        assert widget_name == "Quick Launch", f"The widget name '{widget_name}' is incorrect, should be 'Quick Launch'"
+
+    @allure.step("Checking the display latest posts widget")
+    def check_visible_posts_widget(self):
+        """
+        Метод для проверки отображения виджета Buzz Latest Posts
+        """
+        self.element_is_visible(self.POSTS_WIDGET)
+        widget_name = self.element_is_visible(self.POSTS_WIDGET_NAME).text
+        assert widget_name == "Buzz Latest Posts", f"The widget name '{widget_name}' is incorrect, should be 'Buzz Latest Posts'"

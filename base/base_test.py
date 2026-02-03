@@ -1,4 +1,7 @@
 import pytest
+
+from components.navigation.sidebar_component import SidebarComponent
+from components.navigation.topbar_component import TopbarComponent
 from config.data import Data
 from config.links import Links
 from pages.login_page import LoginPage
@@ -18,6 +21,8 @@ class BaseTest:
     dashboard_page: DashboardPage
     personal_page: PersonalPage
     profile_image_page: ProfilePicturePage
+    sidebar_component: SidebarComponent
+    topbar_component: TopbarComponent
 
     @pytest.fixture(autouse=True)
     def base(self, request, driver_fixture):
@@ -32,3 +37,5 @@ class BaseTest:
         request.cls.dashboard_page = DashboardPage(driver_fixture, self.links.DASHBOARD_PAGE)
         request.cls.personal_page = PersonalPage(driver_fixture, self.links.PERSONAL_PAGE)
         request.cls.profile_image_page = ProfilePicturePage(driver_fixture, self.links.PROFILE_PICTURE_PAGE)
+        request.cls.sidebar_component = SidebarComponent(driver_fixture)
+        request.cls.topbar_component = TopbarComponent(driver_fixture)

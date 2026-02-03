@@ -11,13 +11,6 @@ class LoginPageLocators:
     LOGIN_BUTTON = ("xpath", "//button[@type='submit']")
     ERROR_MESSAGE = ("xpath", "//div/p[@class='oxd-text oxd-text--p oxd-alert-content-text']")
 
-
-class DashboardPageLocators:
-    """ Класс с локаторами для страницы DashboardPage """
-    MY_INFO_BUTTON = ("xpath", "//a[@href='/web/index.php/pim/viewMyDetails']")
-    LEFT_MENU_LIST_ITEMS = ("xpath", "//span[@class='oxd-text oxd-text--span oxd-main-menu-item--name']")
-
-
 class PersonalPageLocators:
     """ Класс с локаторами для страницы PersonalPage """
     FIRST_NAME_FIELD = ("xpath", "//input[@name='firstName']")
