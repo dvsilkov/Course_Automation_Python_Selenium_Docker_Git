@@ -9,3 +9,4 @@ class Links:
     DASHBOARD_PAGE = f"{HOST}/dashboard/index"
     PERSONAL_PAGE = f"{HOST}/pim/viewPersonalDetails/empNumber/7"
     PROFILE_PICTURE_PAGE = f"{HOST}/pim/viewPhotograph/empNumber/7"
+    BUZZ_PAGE = f"{HOST}/buzz/viewBuzz"

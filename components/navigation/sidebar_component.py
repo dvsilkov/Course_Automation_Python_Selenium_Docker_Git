@@ -19,6 +19,10 @@ class SidebarComponent(BaseComponent):
     def click_my_info_link(self):
         self.element_is_clickable(self.MY_INFO_ITEM).click()
 
+    @allure.step("Click on 'Buzz' link")
+    def click_buzz_link(self):
+        self.element_is_clickable(self.BUZZ_ITEM).click()
+
     @allure.step("Check items list in the left main menu")
     def check_visible(self):
         """

@@ -34,7 +34,7 @@ class TestProfilePicture(BaseTest):
         self.login_page.enter_password(self.data.PASSWORD)
         self.login_page.click_login_button()
         self.dashboard_page.page_is_opened()
-        self.dashboard_page.click_my_info_link()
+        self.sidebar_component.click_my_info_link()
         self.personal_page.page_is_opened()
         self.personal_page.click_profile_image()
         self.profile_image_page.page_is_opened()
